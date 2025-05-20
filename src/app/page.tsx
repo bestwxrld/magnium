@@ -1,21 +1,26 @@
-import { faCodeCommit } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "next/image";
+// src/page.tsx
+import LandingPage from './components/landing/LandingPage';
 
 export default function Home() {
+  const heroContent = {
+    title: "нового поколения",
+    highlightedText: "IoT Маршрутизатор",
+    description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+    primaryButtonText: "Подробнее",
+    secondaryButtonText: "Telegram"
+  };
+
+  const videoContent = {
+    width: '350px',
+    height: '200px',
+    marginLeft: '5rem',
+    marginBottom: '60rem'
+  };
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-
-        <FontAwesomeIcon icon={faCodeCommit} />
-    </div>
+    <LandingPage 
+      heroContent={heroContent}
+      videoContent={videoContent}
+    />
   );
 }
