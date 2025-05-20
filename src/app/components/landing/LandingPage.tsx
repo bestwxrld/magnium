@@ -1,4 +1,3 @@
-// src/components/landing/LandingPage.tsx
 'use client';
 import React, { useEffect, useRef } from 'react';
 import { HeroContentProps, VideoContentProps, LandingPageProps } from '../../dto/interfaces';
@@ -13,7 +12,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ heroContent, videoContent }) 
       const scrollY = window.scrollY;
       const maxScroll = 300;
       const progress = Math.min(scrollY / maxScroll, 1);
-      
+
       if (heroTitleRef.current) {
         const translateY = -42.1 * progress;
         const opacity = 1 - progress;
@@ -48,9 +47,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ heroContent, videoContent }) 
         <section className="flex items-center gap-16 py-16 relative min-h-screen">
 
           {/* Video container */}
-          <div 
+          <div
             ref={videoRef}
-            className="fixed w-1/5 aspect-video transition-transform duration-600 will-change-transform z-20 overflow-hidden bg-gray-900"
+            className="fixed w-1/5 aspect-video [transform-origin:top_right] [transition:transform_0.6s_cubic-bezier(0.25,_0.46,_0.45,_0.94)] will-change-transform z-20 overflow-hidden bg-[#1a1a1a]"
             style={{
               right: '25%',
               top: '10%',
@@ -64,9 +63,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ heroContent, videoContent }) 
           </div>
 
           {/* Hero content с линией, привязанной к заголовку */}
-          <div 
+          <div
             ref={heroTitleRef}
-            className="transition-all duration-400 will-change-transform,opacity"
+            className="transition-all duration-400 will-change-transform will-change-opacity"
             style={{
               transform: 'translate3d(0px, 0px, 0px)',
               opacity: 1
@@ -93,6 +92,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ heroContent, videoContent }) 
               </button>
             </div>
           </div>
+
         </section>
       </main>
     </div>
