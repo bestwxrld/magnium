@@ -1,4 +1,3 @@
-// src/page.tsx
 import LandingPage from './components/landing/LandingPage';
 
 export default function Home() {
@@ -14,7 +13,7 @@ export default function Home() {
     width: '350px',
     height: '200px',
     marginLeft: '5rem',
-    marginBottom: '60rem'
+    marginBottom: '2rem'  // уменьшил для нормального отступа
   };
 
   return (
