@@ -81,6 +81,11 @@ const LandingPage: React.FC<LandingPageProps> = ({ heroContent, videoContent }) 
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isMobile, videoContent.marginLeft, videoContent.marginBottom]);
 
+  // Обработчик клика по кнопке Telegram
+  const handleTelegramClick = () => {
+    window.open('https://t.me/moxitech', '_blank');
+  };
+
   return (
     <div className="font-sans antialiased text-gray-900 bg-white min-h-screen relative">
       {/* Вертикальная фиксированная серая линия по левому краю для десктопа */}
@@ -94,7 +99,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ heroContent, videoContent }) 
 
       <div className="xl:px-0 mx-auto xl:max-w-[1400px] w-full max-w-full">
         <div className="relative xl:border-l xl:mx-auto bg-white xl:border-gray-300">
-          <Navbar />
 
           <main className="grid grid-cols-12 gap-4 lg:gap-6 xl:gap-x-10 relative pt-24 px-8 pb-8">
             {isMobile ? (
@@ -132,11 +136,16 @@ const LandingPage: React.FC<LandingPageProps> = ({ heroContent, videoContent }) 
                   <p className="text-base text-gray-600 leading-relaxed mb-6">{heroContent.description}</p>
 
                   <div className="flex flex-col gap-3">
-                    <button className="px-6 py-3 bg-blue-600 text-white rounded-lg text-base font-medium hover:bg-blue-700 transition-colors w-full">
+                    <button
+                      className="px-6 py-3 bg-blue-600 text-white rounded-lg text-base font-medium hover:bg-blue-700 transition-colors w-full cursor-pointer"
+                    >
                       {heroContent.primaryButtonText}
                     </button>
 
-                    <button className="flex items-center justify-center gap-2 px-6 py-3 border border-cyan-400 text-cyan-400 rounded-xs text-base font-medium hover:bg-cyan-400/10 transition-colors w-full">
+                    <button
+                      onClick={handleTelegramClick}
+                      className="flex items-center justify-center gap-2 px-6 py-3 border border-cyan-400 text-cyan-400 rounded-xs text-base font-medium hover:bg-cyan-400/10 transition-colors w-full cursor-pointer"
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="w-5 h-5"
@@ -173,11 +182,16 @@ const LandingPage: React.FC<LandingPageProps> = ({ heroContent, videoContent }) 
                   <p className="mb-12 text-lg leading-normal md:text-lg">{heroContent.description}</p>
 
                   <div className="mb-8 space-x-5 flex">
-                    <button className="font-medium rounded-xs transition inline-block duration-100 border border-transparent text-white bg-blue-600 hover:bg-blue-700 shadow-primary-button hover:shadow-primary-button-hover px-4 py-2">
+                    <button
+                      className="font-medium rounded-xs transition inline-block duration-100 border border-transparent text-white bg-blue-600 hover:bg-blue-700 shadow-primary-button hover:shadow-primary-button-hover px-4 py-2 cursor-pointer"
+                    >
                       {heroContent.primaryButtonText}
                     </button>
 
-                    <button className="flex items-center gap-2 px-4 py-2 border border-cyan-400 text-cyan-400 rounded-xs bg-transparent hover:bg-cyan-400/10 transition-colors duration-200">
+                    <button
+                      onClick={handleTelegramClick}
+                      className="flex items-center gap-2 px-4 py-2 border border-cyan-400 text-cyan-400 rounded-xs bg-transparent hover:bg-cyan-400/10 transition-colors duration-200 cursor-pointer"
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="w-5 h-5"
@@ -192,23 +206,24 @@ const LandingPage: React.FC<LandingPageProps> = ({ heroContent, videoContent }) 
                     </button>
                   </div>
                 </div>
-
-                <div
-                  ref={videoRef}
-                  className="fixed top-24 max-w-[480px] max-h-[320px] aspect-video overflow-hidden bg-[#1a1a1a] text-white z-30"
-                  style={{
-                    left: 'calc(50% + 80px)', // смещение вправо от центра
-                    right: 'auto',
-                    width: '30vw', // ширина
-                    height: 'auto',
-                    marginLeft: videoContent.marginLeft,
-                    marginBottom: videoContent.marginBottom,
-                    transform: 'scale(1)',
-                    transformOrigin: 'top right',
-                    transition: 'transform 0.5s ease',
-                  }}
-                >
-                  Video Placeholder
+                <div className="flex flex-col items-end w-full mt-20 md:mt-0 md:h-1 md:sticky md:top-28">
+                  <div
+                    ref={videoRef}
+                    className="fixed top-24 max-w-[480px] max-h-[320px] aspect-video overflow-hidden bg-[#1a1a1a] text-white z-30"
+                    style={{
+                      left: 'calc(50% + 80px)', // смещение вправо от центра
+                      right: 'auto',
+                      width: '30vw', // ширина
+                      height: 'auto',
+                      marginLeft: videoContent.marginLeft,
+                      marginBottom: videoContent.marginBottom,
+                      transform: 'scale(1)',
+                      transformOrigin: 'top right',
+                      transition: 'transform 0.5s ease',
+                    }}
+                  >
+                    Video Placeholder
+                  </div>
                 </div>
               </section>
             )}

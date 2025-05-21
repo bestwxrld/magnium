@@ -81,7 +81,12 @@ const Navbar = () => {
         {/* Поиск, кнопка, иконка */}
         <div className="hidden md:flex items-center gap-3 sm:gap-6 min-w-[280px] lg:min-w-[320px]">
           {/* Иконка */}
-          <a href="#" className="flex-shrink-0">
+          <a
+            href="https://gitlab.moxitech.ru"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-shrink-0"
+          >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="#FC6D26">
               <path d="M22.65 14.39L12 22.13 1.35 14.39a.84.84 0 0 1-.3-.94l1.22-3.78 2.44-7.51A.42.42 0 0 1 4.82 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.49h8.1l2.44-7.51A.42.42 0 0 1 18.6 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.51L23 13.45a.84.84 0 0 1-.35.94z" />
             </svg>
@@ -103,7 +108,11 @@ const Navbar = () => {
                 stroke="currentColor"
               >
                 <circle cx="11" cy="11" r="8" strokeWidth="1.5" />
-                <path d="M21 21L16.65 16.65" strokeWidth="1.5" strokeLinecap="round" />
+                <path
+                  d="M21 21L16.65 16.65"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
               </svg>
             </div>
           </div>
@@ -139,6 +148,7 @@ const Navbar = () => {
           >
             Партнёры
           </a>
+
           {/* Поиск и кнопка в мобильном меню */}
           <div className="pt-2 border-t border-gray-200">
             <input
