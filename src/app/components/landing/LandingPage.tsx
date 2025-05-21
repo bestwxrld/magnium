@@ -98,7 +98,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ heroContent, videoContent }) 
       )}
 
       <div className="xl:px-0 mx-auto xl:max-w-[1400px] w-full max-w-full">
-        <div className="relative xl:border-l xl:mx-auto bg-white xl:border-gray-300">
+        <div className="relative xl:border-l xl:mx-auto bg-white">
 
           <main className="grid grid-cols-12 gap-4 lg:gap-6 xl:gap-x-10 relative pt-24 px-8 pb-8">
             {isMobile ? (
