@@ -18,8 +18,8 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center gap-8 md:gap-12 lg:gap-20">
         {/* Логотип */}
-        <div className="text-blue-600 text-2xl font-extrabold font-mono flex-shrink-0">
-          Magnium
+        <div className="text-blue-600 text-2xl font-extrabold font-['JetBrains_Mono'] flex-shrink-0">
+          MaGnium
         </div>
 
         {/* Кнопка-бургер для мобильных <768 */}
@@ -54,7 +54,7 @@ const Navbar = () => {
         </button>
 
         {/* Навигация для >=768 */}
-        <nav className="hidden md:flex gap-4 lg:gap-6 whitespace-nowrap">
+        <nav className="hidden md:flex gap-4 lg:gap-6 whitespace-nowrap font-['JetBrains_Mono']">
           <a
             href="#"
             className="text-blue-900/50 hover:text-blue-600 transition-colors text-base font-medium"
@@ -79,7 +79,7 @@ const Navbar = () => {
         <div className="flex-grow hidden md:block" />
 
         {/* Поиск, кнопка, иконка */}
-        <div className="hidden md:flex items-center gap-3 sm:gap-6 min-w-[280px] lg:min-w-[320px]">
+        <div className="hidden md:flex items-center gap-3 sm:gap-6 min-w-[280px] lg:min-w-[320px] font-['JetBrains_Mono']">
           {/* Иконка */}
           <a
             href="https://gitlab.moxitech.ru"
@@ -97,7 +97,7 @@ const Navbar = () => {
             <input
               type="text"
               placeholder="Поиск"
-              className="pl-10 pr-4 py-2 rounded text-sm border border-gray-200 outline-none focus:border-blue-600 bg-white/80 transition-colors w-full"
+              className="pl-10 pr-4 py-2 rounded text-sm border border-gray-200 outline-none focus:border-blue-600 bg-white/80 transition-colors w-full font-['JetBrains_Mono']"
             />
             <div className="absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
               <svg
@@ -118,7 +118,7 @@ const Navbar = () => {
           </div>
 
           {/* Кнопка */}
-          <button className="px-4 py-2 bg-blue-600 text-white rounded text-sm font-medium hover:bg-blue-700 transition-colors flex-shrink-0 whitespace-nowrap">
+          <button className="px-4 py-2 bg-blue-600 text-white rounded text-sm font-medium hover:bg-blue-700 transition-colors flex-shrink-0 whitespace-nowrap font-['JetBrains_Mono']">
             Документация
           </button>
         </div>
@@ -126,24 +126,24 @@ const Navbar = () => {
 
       {/* Выпадающее меню для мобильных */}
       {isOpen && (
-        <nav className="md:hidden mt-4 px-4 space-y-3 bg-white rounded-lg shadow-lg">
+        <nav className="md:hidden mt-4 px-4 space-y-3 bg-white rounded-lg shadow-lg font-['JetBrains_Mono']">
           <a
             href="#"
-            className="block text-blue-900/70 hover:text-blue-600 transition-colors text-base font-medium"
+            className="block text-blue-900/70 hover:text-blue-600 transition-colors text-lg font-medium"
             onClick={() => setIsOpen(false)}
           >
             Open Source
           </a>
           <a
             href="#"
-            className="block text-blue-900/70 hover:text-blue-600 transition-colors text-base font-medium"
+            className="block text-blue-900/70 hover:text-blue-600 transition-colors text-lg font-medium"
             onClick={() => setIsOpen(false)}
           >
             Разработчики
           </a>
           <a
             href="#"
-            className="block text-blue-900/70 hover:text-blue-600 transition-colors text-base font-medium"
+            className="block text-blue-900/70 hover:text-blue-600 transition-colors text-lg font-medium"
             onClick={() => setIsOpen(false)}
           >
             Партнёры
@@ -151,12 +151,12 @@ const Navbar = () => {
 
           {/* Поиск и кнопка в мобильном меню */}
           <div className="pt-2 border-t border-gray-200">
-            <input
-              type="text"
-              placeholder="Поиск"
-              className="w-full px-3 py-2 rounded text-sm border border-gray-300 outline-none focus:border-blue-600"
-            />
-            <button className="w-full mt-3 px-4 py-2 bg-blue-600 text-white rounded text-sm font-medium hover:bg-blue-700 transition-colors">
+          <input
+  type="text"
+  placeholder="Поиск"
+  className="w-full px-3 py-2 rounded text-lg border border-gray-300 outline-none focus:border-blue-600 font-['JetBrains_Mono'] placeholder:text-gray-500 placeholder:opacity-100"
+/>
+            <button className="w-full mt-3 px-4 py-2 bg-blue-600 text-white rounded text-sm font-medium hover:bg-blue-700 transition-colors font-['JetBrains_Mono']">
               Документация
             </button>
           </div>

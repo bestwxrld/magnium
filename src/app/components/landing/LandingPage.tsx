@@ -87,7 +87,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ heroContent, videoContent }) 
   };
 
   return (
-    <div className="font-sans antialiased text-gray-900 bg-white min-h-screen relative">
+    <div className="font-['JetBrains_Mono'] antialiased text-gray-900 bg-white min-h-screen relative">
       {/* Вертикальная фиксированная серая линия по левому краю для десктопа */}
       {!isMobile && (
         <div className="fixed top-0 left-0 w-full pointer-events-none z-10">
