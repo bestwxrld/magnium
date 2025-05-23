@@ -1,7 +1,6 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
 import { HeroContentProps, VideoContentProps, LandingPageProps } from '../../dto/interfaces';
-import Navbar from './Navbar';
 
 const LandingPage: React.FC<LandingPageProps> = ({ heroContent, videoContent }) => {
   const heroTitleRef = useRef<HTMLDivElement>(null);
@@ -22,21 +21,22 @@ const LandingPage: React.FC<LandingPageProps> = ({ heroContent, videoContent }) 
 
   useEffect(() => {
     if (isMobile) {
-      // Мобильная версия — убираем позиционирование, масштаб, смещения
       if (videoRef.current) {
-        videoRef.current.style.position = 'static';
-        videoRef.current.style.width = '100%';
-        videoRef.current.style.height = 'auto';
-        videoRef.current.style.top = 'auto';
-        videoRef.current.style.right = 'auto';
-        videoRef.current.style.left = 'auto';
-        videoRef.current.style.transform = 'none';
-        videoRef.current.style.transition = 'none';
-        videoRef.current.style.zIndex = 'auto';
-        videoRef.current.style.marginLeft = '0';
-        videoRef.current.style.marginRight = '0';
-        videoRef.current.style.marginBottom = videoContent.marginBottom || '1rem';
-        videoRef.current.style.overflow = 'hidden';
+        Object.assign(videoRef.current.style, {
+          position: 'static',
+          width: '100%',
+          height: 'auto',
+          top: 'auto',
+          right: 'auto',
+          left: 'auto',
+          transform: 'none',
+          transition: 'none',
+          zIndex: 'auto',
+          marginLeft: '0',
+          marginRight: '0',
+          marginBottom: videoContent.marginBottom || '1rem',
+          overflow: 'hidden',
+        });
       }
       if (heroTitleRef.current) {
         heroTitleRef.current.style.transform = 'none';
@@ -50,7 +50,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ heroContent, videoContent }) 
       return;
     }
 
-    // Десктоп — скролл-анимация
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const maxScroll = 190;
@@ -71,7 +70,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ heroContent, videoContent }) 
       }
 
       if (videoRef.current) {
-        const maxScale = 2.7; // максимальный масштаб
+        const maxScale = 2.7;
         const scale = Math.min(1 + 4 * progress, maxScale);
         videoRef.current.style.transform = `scale(${scale})`;
       }
@@ -81,14 +80,28 @@ const LandingPage: React.FC<LandingPageProps> = ({ heroContent, videoContent }) 
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isMobile, videoContent.marginLeft, videoContent.marginBottom]);
 
-  // Обработчик клика по кнопке Telegram
   const handleTelegramClick = () => {
     window.open('https://t.me/moxitech', '_blank');
   };
 
+  const renderVideoContent = () => {
+    if (videoContent.useVideo) {
+      return (
+        <video
+          src={videoContent.videoSrc}
+          className="w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+      );
+    }
+    return <div className="flex items-center justify-center w-full h-full text-white">Video Placeholder</div>;
+  };
+
   return (
     <div className="font-['JetBrains_Mono'] antialiased text-gray-900 bg-white min-h-screen relative">
-      {/* Вертикальная фиксированная серая линия по левому краю для десктопа */}
       {!isMobile && (
         <div className="fixed top-0 left-0 w-full pointer-events-none z-10">
           <div className="max-w-[1400px] mx-auto relative">
@@ -99,20 +112,19 @@ const LandingPage: React.FC<LandingPageProps> = ({ heroContent, videoContent }) 
 
       <div className="xl:px-0 mx-auto xl:max-w-[1400px] w-full max-w-full">
         <div className="relative xl:border-l xl:mx-auto bg-white">
-
           <main className="grid grid-cols-12 gap-4 lg:gap-6 xl:gap-x-10 relative pt-24 px-8 pb-8">
             {isMobile ? (
               <section className="col-span-12 flex flex-col gap-8">
                 <div
                   ref={videoRef}
-                  className="w-full aspect-video overflow-hidden bg-[#1a1a1a] flex items-center justify-center text-white"
+                  className="w-full aspect-video overflow-hidden bg-[#1a1a1a]"
                   style={{
                     marginLeft: 0,
                     marginRight: 0,
                     marginBottom: videoContent.marginBottom || '1rem',
                   }}
                 >
-                  Video Placeholder
+                  {renderVideoContent()}
                 </div>
 
                 <div
@@ -136,9 +148,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ heroContent, videoContent }) 
                   <p className="text-base text-gray-600 leading-relaxed mb-6">{heroContent.description}</p>
 
                   <div className="flex flex-col gap-3">
-                    <button
-                      className="px-6 py-3 bg-blue-600 text-white rounded-lg text-base font-medium hover:bg-blue-700 transition-colors w-full cursor-pointer"
-                    >
+                    <button className="px-6 py-3 bg-blue-600 text-white rounded-lg text-base font-medium hover:bg-blue-700 transition-colors w-full cursor-pointer">
                       {heroContent.primaryButtonText}
                     </button>
 
@@ -182,9 +192,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ heroContent, videoContent }) 
                   <p className="mb-12 text-lg leading-normal md:text-lg">{heroContent.description}</p>
 
                   <div className="mb-8 space-x-5 flex">
-                    <button
-                      className="font-medium rounded-xs transition inline-block duration-100 border border-transparent text-white bg-blue-600 hover:bg-blue-700 shadow-primary-button hover:shadow-primary-button-hover px-4 py-2 cursor-pointer"
-                    >
+                    <button className="font-medium rounded-xs transition inline-block duration-100 border border-transparent text-white bg-blue-600 hover:bg-blue-700 shadow-primary-button hover:shadow-primary-button-hover px-4 py-2 cursor-pointer">
                       {heroContent.primaryButtonText}
                     </button>
 
@@ -206,14 +214,15 @@ const LandingPage: React.FC<LandingPageProps> = ({ heroContent, videoContent }) 
                     </button>
                   </div>
                 </div>
+
                 <div className="flex flex-col items-end w-full mt-20 md:mt-0 md:h-1 md:sticky md:top-28">
                   <div
                     ref={videoRef}
                     className="fixed top-24 max-w-[480px] max-h-[320px] aspect-video overflow-hidden bg-[#1a1a1a] text-white z-30"
                     style={{
-                      left: 'calc(50% + 80px)', // смещение вправо от центра
+                      left: 'calc(50% + 80px)',
                       right: 'auto',
-                      width: '30vw', // ширина
+                      width: '30vw',
                       height: 'auto',
                       marginLeft: videoContent.marginLeft,
                       marginBottom: videoContent.marginBottom,
@@ -222,7 +231,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ heroContent, videoContent }) 
                       transition: 'transform 0.5s ease',
                     }}
                   >
-                    Video Placeholder
+                    {renderVideoContent()}
                   </div>
                 </div>
               </section>

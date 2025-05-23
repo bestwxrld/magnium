@@ -12,6 +12,9 @@ export interface VideoContentProps {
   height: string;
   marginLeft: string;
   marginBottom: string;
+  videoUrl?: string; 
+  useVideo?: boolean; 
+  videoSrc?: string;  
 }
 
 export interface LandingPageProps {
@@ -19,3 +22,12 @@ export interface LandingPageProps {
   videoContent: VideoContentProps;
 }
 
+export interface FooterColumnProps {
+  title: string;
+  links: { href: string; label: string }[];
+  colSpan: string;
+}
+
+export interface NavbarProps {
+  docsLink?: string; 
+}

@@ -2,8 +2,36 @@
 
 import React, { useState } from 'react';
 
-const Navbar = () => {
+
+interface NavbarProps {
+  docsLink?: string;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ docsLink }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const DocumentationButton = () => {
+    if (docsLink) {
+      return (
+        <a
+          href={docsLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-4 py-2 bg-blue-600 text-white rounded text-sm font-medium hover:bg-blue-700 transition-colors flex-shrink-0 whitespace-nowrap font-['JetBrains_Mono'] cursor-pointer"
+        >
+          Документация
+        </a>
+      );
+    }
+    return (
+      <button
+        className="px-4 py-2 bg-blue-600 text-white rounded text-sm font-medium hover:bg-blue-700 transition-colors flex-shrink-0 whitespace-nowrap font-['JetBrains_Mono'] cursor-pointer"
+        onClick={() => alert('Документация')}
+      >
+        Документация
+      </button>
+    );
+  };
 
   return (
     <header
@@ -97,30 +125,32 @@ const Navbar = () => {
             <input
               type="text"
               placeholder="Поиск"
-              className="pl-10 pr-4 py-2 rounded text-sm border border-gray-200 outline-none focus:border-blue-600 bg-white/80 transition-colors w-full font-['JetBrains_Mono']"
+              className="
+                pl-10 pr-4 py-2 rounded text-sm border border-gray-200 outline-none
+                focus:border-blue-600 bg-white/95 text-gray-900
+                placeholder:text-gray-400 placeholder:opacity-100
+                transition-colors w-full font-['JetBrains_Mono']
+              "
             />
-            <div className="absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+            <div className="absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-900">
               <svg
                 width="16"
                 height="16"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
-                <circle cx="11" cy="11" r="8" strokeWidth="1.5" />
-                <path
-                  d="M21 21L16.65 16.65"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
+                <circle cx="11" cy="11" r="8" />
+                <path d="M21 21L16.65 16.65" />
               </svg>
             </div>
           </div>
 
-          {/* Кнопка */}
-          <button className="px-4 py-2 bg-blue-600 text-white rounded text-sm font-medium hover:bg-blue-700 transition-colors flex-shrink-0 whitespace-nowrap font-['JetBrains_Mono']">
-            Документация
-          </button>
+          {/* Кнопка документация */}
+          <DocumentationButton />
         </div>
       </div>
 
@@ -151,14 +181,32 @@ const Navbar = () => {
 
           {/* Поиск и кнопка в мобильном меню */}
           <div className="pt-2 border-t border-gray-200">
-          <input
-  type="text"
-  placeholder="Поиск"
-  className="w-full px-3 py-2 rounded text-lg border border-gray-300 outline-none focus:border-blue-600 font-['JetBrains_Mono'] placeholder:text-gray-500 placeholder:opacity-100"
-/>
-            <button className="w-full mt-3 px-4 py-2 bg-blue-600 text-white rounded text-sm font-medium hover:bg-blue-700 transition-colors font-['JetBrains_Mono']">
-              Документация
-            </button>
+            <input
+              type="text"
+              placeholder="Поиск"
+              className="w-full px-3 py-2 rounded text-lg border border-gray-300 outline-none focus:border-blue-600 font-['JetBrains_Mono'] placeholder:text-gray-500 placeholder:opacity-100"
+            />
+            {docsLink ? (
+              <a
+                href={docsLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full mt-3 px-4 py-2 bg-blue-600 text-white rounded text-sm font-medium hover:bg-blue-700 transition-colors font-['JetBrains_Mono'] cursor-pointer block text-center"
+                onClick={() => setIsOpen(false)}
+              >
+                Документация
+              </a>
+            ) : (
+              <button
+                className="w-full mt-3 px-4 py-2 bg-blue-600 text-white rounded text-sm font-medium hover:bg-blue-700 transition-colors font-['JetBrains_Mono'] cursor-pointer"
+                onClick={() => {
+                  setIsOpen(false);
+                  alert('Документация');
+                }}
+              >
+                Документация
+              </button>
+            )}
           </div>
         </nav>
       )}

@@ -2,6 +2,7 @@ import LandingPage from './components/landing/LandingPage';
 import EcosystemPage from './components/landing/Ecosystem';
 import TechnologiesBlock from './components/landing/TechnologiesBlock';
 import Navbar from './components/landing/Navbar';
+import Footer from './components/landing/Footer';
 
 export default function Home() {
   const heroContent = {
@@ -31,6 +32,7 @@ export default function Home() {
             />
             <EcosystemPage />
             <TechnologiesBlock />
+            <Footer />
           </div>
         </div>
       </div>
