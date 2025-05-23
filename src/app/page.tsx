@@ -1,5 +1,6 @@
 import LandingPage from './components/landing/LandingPage';
 import EcosystemPage from './components/landing/Ecosystem';
+import TechnologiesBlock from './components/landing/TechnologiesBlock';
 import Navbar from './components/landing/Navbar';
 
 export default function Home() {
@@ -15,7 +16,7 @@ export default function Home() {
     width: '350px',
     height: '200px',
     marginLeft: '5rem',
-    marginBottom: '2rem' // уменьшил для нормального отступа
+    marginBottom: '2rem'
   };
 
   return (
@@ -29,6 +30,7 @@ export default function Home() {
               videoContent={videoContent}
             />
             <EcosystemPage />
+            <TechnologiesBlock />
           </div>
         </div>
       </div>

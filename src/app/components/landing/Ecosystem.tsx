@@ -25,7 +25,7 @@ const EcosystemPage: React.FC = () => {
     }, [selectedTab]);
 
     return (
-        <div className="min-h-screen w-full bg-white relative overflow-hidden font-['JetBrains_Mono'] px-4 lg:px-12">
+        <div className="w-full bg-white relative overflow-hidden font-['JetBrains_Mono'] px-4 lg:px-12">
 
             {/* Главный grid контейнер */}
             <div className="grid grid-cols-12 gap-4 lg:gap-6 xl:gap-x-10 col-span-12 mt-12 lg:mt-20">
