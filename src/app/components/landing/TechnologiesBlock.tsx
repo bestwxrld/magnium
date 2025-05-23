@@ -9,7 +9,7 @@ const tabs = [
   "...",
 ];
 
-const tabContent: Record<string, JSX.Element> = {
+const tabContent: Record<string, React.ReactNode> = {
   Magnium: (
     <div className="p-6 text-[#201155]">
       <h4 className="text-2xl font-bold mb-2">Magnium</h4>
