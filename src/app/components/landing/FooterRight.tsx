@@ -5,7 +5,6 @@ interface FooterColumnProps {
   }
   
   const FooterColumn: React.FC<FooterColumnProps> = ({ title, links, colSpan }) => {
-    // Размеры текста вернули к исходным
     const titleClass = "text-[#201155] text-lg font-medium font-['JetBrains_Mono'] mb-4";
     const linkClass = "text-[#201155]/50 text-sm font-normal font-['JetBrains_Mono'] hover:text-[#201155]/80";
   

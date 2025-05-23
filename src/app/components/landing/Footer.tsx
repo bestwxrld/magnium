@@ -10,7 +10,6 @@ const Footer: React.FC = () => {
         <FooterRight />
       </div>
 
-      {/* Добавленный SVG в самый низ футера */}
       <div className="mt-0 sm:mt-12 w-full max-w-[1531px] mx-auto" style={{ height: 'auto', minHeight: '50px' }}>
   <svg
     className="w-full h-auto block"
