@@ -8,3 +8,7 @@ const ru_RU_heroContent = {
     primaryButtonText: "Подробнее",
     secondaryButtonText: "Telegram"
 }
+
+const ru_RU_Content = {
+    
+}

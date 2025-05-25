@@ -1,11 +1,12 @@
 'use client';
 
+import { TabsElement } from '@/app/dto/interfaces';
 import React, { useState, useRef, useEffect } from 'react';
 
-const tabs = [
-    { label: 'Дом', content: 'Картинка и текст для Дом' },
-    { label: 'Предприятие', content: 'Картинка и текст для Предприятие' },
-    { label: 'Бизнес', content: 'Картинка и текст для Бизнес' },
+const tabs: TabsElement[] = [
+    { label: 'Дом', content: 'Картинка и текст для Дом', src: '' },
+    { label: 'Предприятие', content: 'Картинка и текст для Предприятие', src: '' },
+    { label: 'Бизнес', content: 'Картинка и текст для Бизнес', src: '' },
 ];
 
 const EcosystemPage: React.FC = () => {

@@ -19,3 +19,8 @@ export interface LandingPageProps {
   videoContent: VideoContentProps;
 }
 
+export interface TabsElement  {
+  label: string;
+  content: string;
+  src: string;
+}
