@@ -4,7 +4,7 @@ import "./globals.css";
 
 const jetSans = JetBrains_Mono({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
 });
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ru">
       <body
         className={`${jetSans.variable}  antialiased`}
       >

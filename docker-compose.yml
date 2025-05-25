@@ -1,6 +1,6 @@
-
 services:
   magnium_web:
+    image: reg.moxitech.ru/magnium/frontend/landing:latest
     container_name: magnium_web
     build: .
     ports:

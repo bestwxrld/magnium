@@ -1,0 +1,26 @@
+stages:
+  - push-registry
+  - deploy
+
+version-job:
+  stage: push-registry 
+  image: docker:dind
+  environment: production
+  script:
+    - echo "Pushing new tag..."
+    - docker compose build
+    - docker compose push
+    
+deploy-job:      # This job runs in the deploy stage.
+  stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
+  environment: production
+  script:
+    - echo "Deploying application..."
+    - echo "$SSH_SECRET" > id_rsa
+    - chmod 600 id_rsa
+    - ssh -i id_rsa -o StrictHostKeyChecking=no -p 22 root@192.168.0.45 "cd /root/magnium.langing && docker compose pull && docker compose up -d --force-recreate && docker compose logs"
+    - echo "Application successfully deployed."
+    - rm id_rsa  # Удаляем временный файл с приватным ключом
+
+
+
