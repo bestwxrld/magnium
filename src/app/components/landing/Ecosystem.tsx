@@ -1,6 +1,5 @@
 'use client';
 
-import { TabsElement } from '@/app/dto/interfaces';
 import React, { useState, useRef, useEffect } from 'react';
 
 const tabs = [
