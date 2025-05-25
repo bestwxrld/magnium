@@ -2,8 +2,36 @@
 
 import React, { useState } from 'react';
 
-const Navbar = () => {
+
+interface NavbarProps {
+  docsLink?: string;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ docsLink }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const DocumentationButton = () => {
+    if (docsLink) {
+      return (
+        <a
+          href={docsLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-4 py-2 bg-blue-600 text-white rounded text-sm font-medium hover:bg-blue-700 transition-colors flex-shrink-0 whitespace-nowrap font-['JetBrains_Mono'] cursor-pointer"
+        >
+          Документация
+        </a>
+      );
+    }
+    return (
+      <button
+        className="px-4 py-2 bg-blue-600 text-white rounded text-sm font-medium hover:bg-blue-700 transition-colors flex-shrink-0 whitespace-nowrap font-['JetBrains_Mono'] cursor-pointer"
+        onClick={() => alert('Документация')}
+      >
+        Документация
+      </button>
+    );
+  };
 
   return (
     <header
@@ -18,8 +46,8 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center gap-8 md:gap-12 lg:gap-20">
         {/* Логотип */}
-        <div className="text-blue-600 text-2xl font-extrabold font-mono flex-shrink-0">
-          Magnium
+        <div className="text-blue-600 text-2xl font-extrabold font-['JetBrains_Mono'] flex-shrink-0">
+          MaGnium
         </div>
 
         {/* Кнопка-бургер для мобильных <768 */}
@@ -54,7 +82,7 @@ const Navbar = () => {
         </button>
 
         {/* Навигация для >=768 */}
-        <nav className="hidden md:flex gap-4 lg:gap-6 whitespace-nowrap">
+        <nav className="hidden md:flex gap-4 lg:gap-6 whitespace-nowrap font-['JetBrains_Mono']">
           <a
             href="#"
             className="text-blue-900/50 hover:text-blue-600 transition-colors text-base font-medium"
@@ -79,7 +107,7 @@ const Navbar = () => {
         <div className="flex-grow hidden md:block" />
 
         {/* Поиск, кнопка, иконка */}
-        <div className="hidden md:flex items-center gap-3 sm:gap-6 min-w-[280px] lg:min-w-[320px]">
+        <div className="hidden md:flex items-center gap-3 sm:gap-6 min-w-[280px] lg:min-w-[320px] font-['JetBrains_Mono']">
           {/* Иконка */}
           <a
             href="https://gitlab.moxitech.ru"
@@ -97,53 +125,55 @@ const Navbar = () => {
             <input
               type="text"
               placeholder="Поиск"
-              className="pl-10 pr-4 py-2 rounded text-sm border border-gray-200 outline-none focus:border-blue-600 bg-white/80 transition-colors w-full"
+              className="
+                pl-10 pr-4 py-2 rounded text-sm border border-gray-200 outline-none
+                focus:border-blue-600 bg-white/95 text-gray-900
+                placeholder:text-gray-400 placeholder:opacity-100
+                transition-colors w-full font-['JetBrains_Mono']
+              "
             />
-            <div className="absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+            <div className="absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-900">
               <svg
                 width="16"
                 height="16"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
-                <circle cx="11" cy="11" r="8" strokeWidth="1.5" />
-                <path
-                  d="M21 21L16.65 16.65"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
+                <circle cx="11" cy="11" r="8" />
+                <path d="M21 21L16.65 16.65" />
               </svg>
             </div>
           </div>
 
-          {/* Кнопка */}
-          <button className="px-4 py-2 bg-blue-600 text-white rounded text-sm font-medium hover:bg-blue-700 transition-colors flex-shrink-0 whitespace-nowrap">
-            Документация
-          </button>
+          {/* Кнопка документация */}
+          <DocumentationButton />
         </div>
       </div>
 
       {/* Выпадающее меню для мобильных */}
       {isOpen && (
-        <nav className="md:hidden mt-4 px-4 space-y-3 bg-white rounded-lg shadow-lg">
+        <nav className="md:hidden mt-4 px-4 space-y-3 bg-white rounded-lg shadow-lg font-['JetBrains_Mono']">
           <a
             href="#"
-            className="block text-blue-900/70 hover:text-blue-600 transition-colors text-base font-medium"
+            className="block text-blue-900/70 hover:text-blue-600 transition-colors text-lg font-medium"
             onClick={() => setIsOpen(false)}
           >
             Open Source
           </a>
           <a
             href="#"
-            className="block text-blue-900/70 hover:text-blue-600 transition-colors text-base font-medium"
+            className="block text-blue-900/70 hover:text-blue-600 transition-colors text-lg font-medium"
             onClick={() => setIsOpen(false)}
           >
             Разработчики
           </a>
           <a
             href="#"
-            className="block text-blue-900/70 hover:text-blue-600 transition-colors text-base font-medium"
+            className="block text-blue-900/70 hover:text-blue-600 transition-colors text-lg font-medium"
             onClick={() => setIsOpen(false)}
           >
             Партнёры
@@ -154,11 +184,29 @@ const Navbar = () => {
             <input
               type="text"
               placeholder="Поиск"
-              className="w-full px-3 py-2 rounded text-sm border border-gray-300 outline-none focus:border-blue-600"
+              className="w-full px-3 py-2 rounded text-lg border border-gray-300 outline-none focus:border-blue-600 font-['JetBrains_Mono'] placeholder:text-gray-500 placeholder:opacity-100"
             />
-            <button className="w-full mt-3 px-4 py-2 bg-blue-600 text-white rounded text-sm font-medium hover:bg-blue-700 transition-colors">
-              Документация
-            </button>
+            {docsLink ? (
+              <a
+                href={docsLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full mt-3 px-4 py-2 bg-blue-600 text-white rounded text-sm font-medium hover:bg-blue-700 transition-colors font-['JetBrains_Mono'] cursor-pointer block text-center"
+                onClick={() => setIsOpen(false)}
+              >
+                Документация
+              </a>
+            ) : (
+              <button
+                className="w-full mt-3 px-4 py-2 bg-blue-600 text-white rounded text-sm font-medium hover:bg-blue-700 transition-colors font-['JetBrains_Mono'] cursor-pointer"
+                onClick={() => {
+                  setIsOpen(false);
+                  alert('Документация');
+                }}
+              >
+                Документация
+              </button>
+            )}
           </div>
         </nav>
       )}
