@@ -20,21 +20,21 @@ const tabContent: Record<string, React.ReactNode> = {
   MagniumOS: (
     <div className="p-6 text-[#201155]">
       <h4 className="text-2xl font-bold mb-2">MagniumOS</h4>
-      <p className="text-base mb-4">Наша собственная операционная система с акцентом на безопасность, конфиденциальность и простоту использования.</p>
+      <p className="text-base mb-4">Наша собственная операционная система для IoT роутера Magnium.</p>
       <img src="/images/os.png" alt="MagniumOS" className="h-32" />
     </div>
   ),
   "Magnium Cloud": (
     <div className="p-6 text-[#201155]">
       <h4 className="text-2xl font-bold mb-2">Magnium Cloud</h4>
-      <p className="text-base mb-4">Облачная инфраструктура для масштабирования и надёжного хранения данных. Полная интеграция с MagniumOS.</p>
+      <p className="text-base mb-4">Облачная инфраструктура для мониторинга и удаленного управления Magnium. Полная интеграция с MagniumOS.</p>
       <img src="/images/cloud.png" alt="Magnium Cloud" className="h-32" />
     </div>
   ),
   Magcard: (
     <div className="p-6 text-[#201155]">
       <h4 className="text-2xl font-bold mb-2">Magcard</h4>
-      <p className="text-base mb-4">Инновационная система цифровых удостоверений и платёжных решений на базе технологии NFC.</p>
+      <p className="text-base mb-4">Универсальные hot-swap plug-and-play модули lora, zegbee, 4g, и многие другие.</p>
       <img src="/images/card.png" alt="Magcard" className="h-32" />
     </div>
   ),
@@ -88,11 +88,11 @@ export const TechnologiesBlock = () => {
 
             <div className="col-span-12 mt-9 lg:mt-0 lg:col-span-6 lg:text-right lg:-mr-84 lg:pl-60">
               <h3 className="mb-4 text-2xl leading-tight sm:text-3xl lg:text-4xl text-[#201155] font-mono font-normal lg:text-right">
-                Технологии, которые двигают проекты
+                Наши технологии
               </h3>
               <p className="hidden sm:block text-base leading-normal text-[#201155]/70 font-normal font-mono lg:text-right">
                 Простые и эффективные решения для стабильной и удобной разработки.
-                Каждый инструмент выбран с заботой о производительности и удобстве.
+                Каждый инструмент разрабатыватывается с заботой о производительности и удобстве.
               </p>
             </div>
           </div>
