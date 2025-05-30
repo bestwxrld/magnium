@@ -12,12 +12,14 @@ export default function Home() {
     primaryButtonText: "Подробнее",
     secondaryButtonText: "Telegram"
   };
-
   const videoContent = {
     width: '350px',
     height: '200px',
     marginLeft: '5rem',
-    marginBottom: '2rem'
+    marginBottom: '2rem',
+    videoUrl: '/magnium-landing-promo.mp4',
+    videoSrc: '/magnium-landing-promo.mp4',  
+    useVideo: true,
   };
 
   return (

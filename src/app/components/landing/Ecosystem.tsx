@@ -6,17 +6,17 @@ const tabs = [
     {
         label: 'Дом',
         content: 'Картинка и текст для Дом',
-        image: '/images/home.jpg', 
+        image: '/home.jpg', 
     },
     {
         label: 'Предприятие',
         content: 'Картинка и текст для Предприятие',
-        image: '/images/factory.jpg',
+        image: '/enterprise.jpg',
     },
     {
         label: 'Бизнес',
         content: 'Картинка и текст для Бизнес',
-        image: '/images/business.jpg',
+        image: '/bussiness.jpg',
     },
 ];
 
@@ -63,9 +63,7 @@ const EcosystemPage: React.FC = () => {
                 </div>
 
                 <div className="col-span-8 flex items-center text-[#3d5bf1] text-[32px] font-medium relative">
-                    <span
-                        className="relative left-[-10px] sm:left-[-15px] md:left-[-25px] lg:left-[-90px] 2xl:left-[-220px] transform 2xl:-translate-y-0.5"
-                    >
+                    <span className="relative left-[-10px] sm:left-[-15px] md:left-[-25px] lg:left-[-90px] 2xl:left-[-220px] transform 2xl:-translate-y-0.5">
                         Экосистема
                     </span>
                 </div>
@@ -108,10 +106,15 @@ const EcosystemPage: React.FC = () => {
                         <img
                             src={selected.image}
                             alt={selected.label}
+                            style={{
+                                    backgroundSize: 'cover',
+                                    backgroundRepeat: 'no-repeat',
+                                    height: '100%',
+                            }}
                             className="max-h-[360px] w-auto object-contain rounded shadow"
                         />
                     ) : (
-                        <div className="text-black text-lg font-normal">
+                        <div className="text-black text-lg font-normal w-[80%]">
                             {selected?.content}
                         </div>
                     )}

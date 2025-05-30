@@ -11,31 +11,55 @@ const tabs = [
 
 const tabContent: Record<string, React.ReactNode> = {
   Magnium: (
-    <div className="p-6 text-[#201155]">
-      <h4 className="text-2xl font-bold mb-2">Magnium</h4>
-      <p className="text-base mb-4">Базовая технологическая платформа для всех наших решений. Оптимизирована под высокую производительность и модульность.</p>
-      <img src="/images/magnium.png" alt="Magnium" className="h-32" />
-    </div>
+<div
+  className="p-6 text-[#201155]"
+  style={{
+    backgroundImage: "url('/MAGNIUM_PCB.png')",
+    backgroundSize: 'cover',
+    backgroundPosition: `25% -75%`,
+    backgroundRepeat: 'no-repeat',
+    height: '100%',
+  }}
+>
+   {/* <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(128, 128, 128, 0.3)', // light gray with transparency
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      /> */}
+  <h4 className="text-2xl font-bold mb-2">Magnium</h4>
+  <p className="text-base mb-4">
+    Базовая технологическая платформа для всех наших решений. Оптимизирована под высокую производительность и модульность.
+  </p>
+</div>
+
+
   ),
   MagniumOS: (
     <div className="p-6 text-[#201155]">
       <h4 className="text-2xl font-bold mb-2">MagniumOS</h4>
       <p className="text-base mb-4">Наша собственная операционная система для IoT роутера Magnium.</p>
-      <img src="/images/os.png" alt="MagniumOS" className="h-32" />
+      <img src="/os.png" alt="MagniumOS" className="h-32" />
     </div>
   ),
   "Magnium Cloud": (
     <div className="p-6 text-[#201155]">
       <h4 className="text-2xl font-bold mb-2">Magnium Cloud</h4>
       <p className="text-base mb-4">Облачная инфраструктура для мониторинга и удаленного управления Magnium. Полная интеграция с MagniumOS.</p>
-      <img src="/images/cloud.png" alt="Magnium Cloud" className="h-32" />
+      <img src="/cloud.png" alt="Magnium Cloud" className="h-32" />
     </div>
   ),
   Magcard: (
     <div className="p-6 text-[#201155]">
       <h4 className="text-2xl font-bold mb-2">Magcard</h4>
-      <p className="text-base mb-4">Универсальные hot-swap plug-and-play модули lora, zegbee, 4g, и многие другие.</p>
-      <img src="/images/card.png" alt="Magcard" className="h-32" />
+      <p className="text-base mb-4">Универсальные модули lora, zegbee, BLE и многие другие.</p>
+      <img src="/card.png" alt="Magcard" className="h-32" />
     </div>
   ),
   "...": (
