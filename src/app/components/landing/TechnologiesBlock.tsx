@@ -39,7 +39,7 @@ export const TechnologiesBlock = () => {
             className="absolute top-50 left-[25%] w-full h-full object-cover"
             style={{ transform: 'translateX(-25%)' }}
           />
-          <div className="absolute inset-0 p-6 z-10">
+          <div className="absolute inset-0 p-6">
             <h4 className="text-2xl font-bold mb-2">{title}</h4>
             <p className="text-base">{description}</p>
           </div>
@@ -54,8 +54,8 @@ export const TechnologiesBlock = () => {
             backgroundRepeat: 'no-repeat',
           }}
         >
-          <h4 className="text-2xl font-bold mb-2 z-10 relative">{title}</h4>
-          <p className="text-base mb-4 z-10 relative">{description}</p>
+          <h4 className="text-2xl font-bold mb-2 relative">{title}</h4>
+          <p className="text-base mb-4 relative">{description}</p>
         </div>
       )}
     </div>
