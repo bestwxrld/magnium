@@ -1,13 +1,16 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
-import { HeroContentProps, VideoContentProps, LandingPageProps } from '../../dto/interfaces';
+import { HeroContentProps, VideoContentProps, LandingPageProps } from '../../dto/interfaces'; 
+import { FiVolume2, FiVolumeX } from 'react-icons/fi';
 
 const LandingPage: React.FC<LandingPageProps> = ({ heroContent, videoContent }) => {
   const heroTitleRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLDivElement>(null);
+  const videoElementRef = useRef<HTMLVideoElement>(null);
 
   const [isMobile, setIsMobile] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
@@ -84,17 +87,41 @@ const LandingPage: React.FC<LandingPageProps> = ({ heroContent, videoContent }) 
     window.open('https://t.me/moxitech', '_blank');
   };
 
+  const toggleMute = () => {
+    if (videoElementRef.current) {
+      const newMuted = !videoElementRef.current.muted;
+      videoElementRef.current.muted = newMuted;
+      setIsMuted(newMuted);
+    }
+  };
+
   const renderVideoContent = () => {
     if (videoContent.useVideo) {
       return (
-        <video
-          src={videoContent.videoSrc}
-          className="w-full h-full object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-        />
+        <div className="relative w-full h-full">
+          <video
+            ref={videoElementRef}
+            src={videoContent.videoSrc}
+            className="w-full h-full object-cover"
+            autoPlay
+            loop
+            muted={isMuted}
+            playsInline
+          />
+          <button
+  onClick={toggleMute}
+  aria-label={isMuted ? 'Unmute video' : 'Mute video'}
+  className="absolute top-2 right-2 z-50 p-2"
+  type="button"
+  style={{ color: '#155DFC' }}
+>
+  {isMuted ? (
+    <FiVolumeX className="h-5 w-5" />
+  ) : (
+    <FiVolume2 className="h-5 w-5" />
+  )}
+</button>
+        </div>
       );
     }
     return <div className="flex items-center justify-center w-full h-full text-white">Video Placeholder</div>;
@@ -228,7 +255,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ heroContent, videoContent }) 
                       marginBottom: videoContent.marginBottom,
                       transform: 'scale(1)',
                       transformOrigin: 'top right',
-                      transition: 'transform 0.5s ease',
+                      transition: 'transform 0.3s ease',
+                      borderRadius: '0.5rem',
                     }}
                   >
                     {renderVideoContent()}

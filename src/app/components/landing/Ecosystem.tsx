@@ -6,7 +6,7 @@ const tabs = [
     {
         label: 'Дом',
         content: 'Картинка и текст для Дом',
-        image: '/home.jpg', 
+        image: '/home.jpg',
     },
     {
         label: 'Предприятие',
@@ -78,22 +78,22 @@ const EcosystemPage: React.FC = () => {
                 </div>
 
                 <div className="col-span-12 relative mt-8">
-                    <div className="flex gap-8 relative border-b border-black">
+                    <div className="flex flex-wrap gap-4 sm:gap-6 md:gap-8 border-b border-black relative">
                         {tabs.map((tab, index) => (
                             <div
                                 key={tab.label}
                                 ref={el => { tabsRef.current[index] = el; }}
-                                className={`text-2xl font-semibold cursor-pointer transition ${
+                                className={`text-lg sm:text-xl md:text-2xl font-semibold cursor-pointer transition 
+                                            whitespace-nowrap pb-2 ${
                                     selectedTab === tab.label
                                         ? 'text-[#3d5bf1]'
                                         : 'text-[#201155]/50 hover:text-[#3d5bf1]'
-                                    } pb-2`}
+                                }`}
                                 onClick={() => setSelectedTab(tab.label)}
                             >
                                 {tab.label}
                             </div>
                         ))}
-
                         <span
                             className="absolute bottom-0 h-1 bg-[#3d5bf1] transition-all duration-300 ease-in-out"
                             style={{ left: underlineStyles.left, width: underlineStyles.width }}
@@ -101,28 +101,18 @@ const EcosystemPage: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="col-span-12 bg-[#d9d9d9] mt-8 p-6 min-h-[400px] relative flex items-center justify-center">
-                    {selected?.image ? (
-                        <img
-                            src={selected.image}
-                            alt={selected.label}
-                            style={{
-                                    backgroundSize: 'cover',
-                                    backgroundRepeat: 'no-repeat',
-                                    height: '100%',
-                            }}
-                            className="max-h-[360px] w-auto object-contain rounded shadow"
-                        />
-                    ) : (
-                        <div className="text-black text-lg font-normal w-[80%]">
-                            {selected?.content}
-                        </div>
-                    )}
-
-                    <div className="absolute bottom-4 left-4 text-3xl font-semibold text-[#3d5bf1]">
-                        Одна вместо сотни
-                    </div>
-                </div>
+                <div className="col-span-12 mt-8 flex flex-col gap-4">
+    {selected?.image && (
+        <img
+            src={selected.image}
+            alt={selected.label}
+            className="w-full lg:w-[90%] xl:w-[95%] 2xl:w-full h-auto object-contain rounded shadow"
+        />
+    )}
+    <div className="w-full lg:w-[90%] xl:w-[95%] 2xl:w-full text-xl sm:text-2xl md:text-4xl lg:text-4xl xl:text-4xl font-semibold text-[#3d5bf1] text-left">
+        Одна вместо сотни
+    </div>
+</div>
             </div>
         </div>
     );

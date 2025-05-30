@@ -1,85 +1,100 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const tabs = [
-  "Magnium",
-  "MagniumOS",
-  "Magnium Cloud",
-  "Magcard",
-  "...",
-];
+const tabs = ["Magnium", "MagniumOS", "Magnium Cloud", "Magcard", "..."];
 
-const tabContent: Record<string, React.ReactNode> = {
-  Magnium: (
-<div
-  className="p-6 text-[#201155]"
-  style={{
-    backgroundImage: "url('/MAGNIUM_PCB.png')",
-    backgroundSize: 'cover',
-    backgroundPosition: `25% -75%`,
-    backgroundRepeat: 'no-repeat',
-    height: '100%',
-  }}
->
-   {/* <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: 'rgba(128, 128, 128, 0.3)', // light gray with transparency
-          pointerEvents: 'none',
-          zIndex: 0,
-        }}
-      /> */}
-  <h4 className="text-2xl font-bold mb-2">Magnium</h4>
-  <p className="text-base mb-4">
-    Базовая технологическая платформа для всех наших решений. Оптимизирована под высокую производительность и модульность.
-  </p>
-</div>
+const Logo = ({ src, alt }: { src: string; alt: string }) => {
+  const [isVisible, setIsVisible] = useState(true);
 
+  if (!isVisible) return null;
 
-  ),
-  MagniumOS: (
-    <div className="p-6 text-[#201155]">
-      <h4 className="text-2xl font-bold mb-2">MagniumOS</h4>
-      <p className="text-base mb-4">Наша собственная операционная система для IoT роутера Magnium.</p>
-      <img src="/os.png" alt="MagniumOS" className="h-32" />
-    </div>
-  ),
-  "Magnium Cloud": (
-    <div className="p-6 text-[#201155]">
-      <h4 className="text-2xl font-bold mb-2">Magnium Cloud</h4>
-      <p className="text-base mb-4">Облачная инфраструктура для мониторинга и удаленного управления Magnium. Полная интеграция с MagniumOS.</p>
-      <img src="/cloud.png" alt="Magnium Cloud" className="h-32" />
-    </div>
-  ),
-  Magcard: (
-    <div className="p-6 text-[#201155]">
-      <h4 className="text-2xl font-bold mb-2">Magcard</h4>
-      <p className="text-base mb-4">Универсальные модули lora, zegbee, BLE и многие другие.</p>
-      <img src="/card.png" alt="Magcard" className="h-32" />
-    </div>
-  ),
-  "...": (
-    <div className="p-6 text-[#201155]">
-      <h4 className="text-2xl font-bold mb-2">И многое другое</h4>
-      <p className="text-base mb-4">Мы постоянно расширяем экосистему Magnium, чтобы охватывать новые сферы применения технологий.</p>
-      <img src="/images/more.png" alt="More" className="h-32" />
-    </div>
-  ),
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className="h-8 object-contain"
+      onError={() => setIsVisible(false)}
+    />
+  );
 };
-
-const logos = [
-  "/header_logo.png",
-  "/logos/netflix.svg",
-  "/logos/apple.svg",
-  "/logos/spotify.svg",
-];
 
 export const TechnologiesBlock = () => {
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const renderContent = (title: string, description: string, image: string, position = '25% -75%') => (
+    <div className="relative h-full w-full text-[#201155]">
+      {isMobile ? (
+        <div className="relative h-[400px] w-full overflow-hidden">
+          <img
+            src={image}
+            alt={title}
+            className="absolute top-50 left-[25%] w-full h-full object-cover"
+            style={{ transform: 'translateX(-25%)' }}
+          />
+          <div className="absolute inset-0 p-6 z-10">
+            <h4 className="text-2xl font-bold mb-2">{title}</h4>
+            <p className="text-base">{description}</p>
+          </div>
+        </div>
+      ) : (
+        <div
+          className="p-6 h-full text-[#201155] relative"
+          style={{
+            backgroundImage: `url('${image}')`,
+            backgroundSize: 'cover',
+            backgroundPosition: position,
+            backgroundRepeat: 'no-repeat',
+          }}
+        >
+          <h4 className="text-2xl font-bold mb-2 z-10 relative">{title}</h4>
+          <p className="text-base mb-4 z-10 relative">{description}</p>
+        </div>
+      )}
+    </div>
+  );
+
+  const tabContent: Record<string, React.ReactNode> = {
+    Magnium: renderContent(
+      "Magnium",
+      "Базовая технологическая платформа для всех наших решений. Оптимизирована под высокую производительность и модульность.",
+      "/MAGNIUM_PCB.png"
+    ),
+    MagniumOS: renderContent(
+      "MagniumOS",
+      "Наша собственная операционная система для IoT роутера Magnium.",
+      "/MAGNIUM_PCB.png"
+    ),
+    "Magnium Cloud": renderContent(
+      "Magnium Cloud",
+      "Облачная инфраструктура для мониторинга и удаленного управления Magnium. Полная интеграция с MagniumOS.",
+      "/MAGNIUM_PCB.png"
+    ),
+    Magcard: renderContent(
+      "Magcard",
+      "Универсальные модули lora, zegbee, BLE и многие другие.",
+      "/MAGNIUM_PCB.png"
+    ),
+    "...": renderContent(
+      "И многое другое",
+      "Мы постоянно расширяем экосистему Magnium, чтобы охватывать новые сферы применения технологий.",
+      "/MAGNIUM_PCB.png"
+    ),
+  };
+
+  const logos = [
+    "/header_logo.png",
+    "/logos/netflix.svg",
+    "/logos/apple.svg",
+    "/logos/spotify.svg",
+  ];
 
   return (
     <div className="w-full bg-white relative overflow-hidden font-['JetBrains_Mono'] px-4 lg:px-12">
@@ -128,9 +143,7 @@ export const TechnologiesBlock = () => {
                 <li key={tab} className="flex-shrink-0 lg:flex-shrink snap-start lg:snap-none">
                   <span className="flex items-center border-b border-[#201155]/30 lg:border-none pr-4 lg:pr-0">
                     <button
-                      className={`flex items-center pb-3 text-left border-b-2 cursor-pointer lg:pb-0 lg:border-0 ${
-                        isSelected ? "text-[#201155] border-[#201155]" : "border-transparent"
-                      }`}
+                      className={`flex items-center pb-3 text-left border-b-2 cursor-pointer lg:pb-0 lg:border-0 ${isSelected ? "text-[#201155] border-[#201155]" : "border-transparent"}`}
                       role="tab"
                       aria-selected={isSelected}
                       aria-controls={`panel-${tab}`}
@@ -148,7 +161,7 @@ export const TechnologiesBlock = () => {
 
         <div className="col-span-12 lg:col-span-9">
           <div role="tabpanel" id={`panel-${selectedTab}`} aria-labelledby={`tab-${selectedTab}`}
-               className="relative bg-[#d9d9d9] overflow-hidden h-[400px]">
+               className="relative overflow-hidden h-[400px]">
             {tabContent[selectedTab]}
           </div>
         </div>
@@ -163,9 +176,9 @@ export const TechnologiesBlock = () => {
               {[...logos, ...logos].map((logo, index) => (
                 <div
                   key={index}
-                  className="flex-shrink-0 h-12 w-32 flex items-center justify-center rounded "
+                  className="flex-shrink-0 h-12 w-32 flex items-center justify-center rounded"
                 >
-                  <img src={logo} alt={`Logo ${index}`} className="h-8 object-contain" />
+                  <Logo src={logo} alt={`Logo ${index}`} />
                 </div>
               ))}
             </div>
