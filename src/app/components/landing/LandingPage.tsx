@@ -256,7 +256,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ heroContent, videoContent }) 
                       transform: 'scale(1)',
                       transformOrigin: 'top right',
                       transition: 'transform 0.3s ease',
-                      borderRadius: '0.5rem',
                     }}
                   >
                     {renderVideoContent()}
