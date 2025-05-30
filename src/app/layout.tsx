@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { YandexMetrika } from "./components/YandexMetrika";
 
 const jetSans = JetBrains_Mono({
   variable: "--font-geist-sans",
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body
         className={`${jetSans.variable}  antialiased`}
       >
+        <YandexMetrika />
         {children}
       </body>
     </html>
