@@ -49,7 +49,8 @@ RUN chown nextjs:nodejs .next
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
+COPY  public .next/standalone/ 
+# COPY  .next/static .next/standalone/.next/
 USER nextjs
 
 EXPOSE 3000
