@@ -72,10 +72,7 @@ const tabContent: Record<string, React.ReactNode> = {
 };
 
 const logos = [
-  "/logos/google.svg",
-  "/logos/amazon.svg",
-  "/logos/microsoft.svg",
-  "/logos/facebook.svg",
+  "/header_logo.png",
   "/logos/netflix.svg",
   "/logos/apple.svg",
   "/logos/spotify.svg",
@@ -166,7 +163,7 @@ export const TechnologiesBlock = () => {
               {[...logos, ...logos].map((logo, index) => (
                 <div
                   key={index}
-                  className="flex-shrink-0 h-12 w-32 flex items-center justify-center rounded bg-gray-100"
+                  className="flex-shrink-0 h-12 w-32 flex items-center justify-center rounded "
                 >
                   <img src={logo} alt={`Logo ${index}`} className="h-8 object-contain" />
                 </div>

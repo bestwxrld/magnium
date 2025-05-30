@@ -51,10 +51,10 @@ interface FooterColumnProps {
         <FooterColumn
           title="Загрузки"
           links={[
-            { href: '#', label: 'чота' },
-            { href: '#', label: 'тут' },
-            { href: '#', label: 'надо' },
-            { href: '#', label: 'написать' },
+            { href: '#', label: '' },
+            { href: '#', label: '' },
+            { href: '#', label: '' },
+            { href: '#', label: '' },
           ]}
           colSpan="col-span-6 md:col-span-3"
         />

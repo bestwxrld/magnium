@@ -8,7 +8,7 @@ export default function Home() {
   const heroContent = {
     title: "нового поколения",
     highlightedText: "IoT Маршрутизатор",
-    description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+    description: "Уникальный модульный шлюз для IOT сетей, позволяющий создавать, управлять и персонализировать IOT сети под Ваши нужды.",
     primaryButtonText: "Подробнее",
     secondaryButtonText: "Telegram"
   };
